@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sed -i -e 's/gtk-theme-name=lovelace/"gtk-theme-name=Ocha/' ~/.config/gtk-3.0/settings.ini
+rm ~/.Xresources
+cp ~/.xfiles/teatime ~/.Xresources
+xrdb .Xresources
+killall -USR1 xst
+feh --bg-fill ~/Downloads/lightback.jpg
+echo 'awesome.restart()' | awesome-client
+
