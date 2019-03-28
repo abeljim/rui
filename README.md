@@ -2,6 +2,7 @@
 
 This Project was started because the lack of a plug and play tiling desktop enviroment. 
 This was started with the plan to make a aesthetic and lightwight desktop enviroment.
+Rice without the Price
 
 ## Getting Started
 

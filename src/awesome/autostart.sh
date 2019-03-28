@@ -31,7 +31,7 @@ if [ ! -e /tmp/mpv.fifo ]; then
 fi
 
 # Desktop effects
-run compton --config ~/.config/compton.conf
+run compton --config /usr/share/rui-desktop/compton.conf
 
 # Enable numlock on login
 run numlockx

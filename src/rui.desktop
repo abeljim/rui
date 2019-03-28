@@ -1,6 +1,5 @@
 [Desktop Entry]
-NAME=RUI Desktop
-Comment=RUI Desktop Enviroment
-Exec=/usr/bin/rui-desktop
-TryExec=/usr/bin/rui-desktop
-Type=XSession
+Encoding=UTF-8
+Name=rui
+Comment=RUI Desktop
+Exec=awesome -c /usr/share/rui-desktop/awesome/rc.lua
