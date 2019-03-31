@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # sed -i -e 's/gtk-theme-name=lovelace/"gtk-theme-name=Ocha/' ~/.config/gtk-3.0/settings.ini
-# rm ~/.Xresources
-# cp ~/.xfiles/gruvbox ~/.Xresources
-# xrdb ~/.Xresources
+rm ~/.Xresources
+cp ~/.xfiles/gruvbox ~/.Xresources
+xrdb ~/.Xresources
 light_terminal
-xfconf-query -c xsettings -p /Net/ThemeName -s "Ocha"
+xfconf-query -c xsettings -p /Net/ThemeName -s "Sephia"
 # killall -USR1 xst
 feh --bg-fill /usr/share/rui-desktop/wallpapers/light_wall.png
 # betterlockscreen -u /usr/share/rui-desktop/wallpapers/light_wall.jpg &
