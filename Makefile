@@ -20,6 +20,11 @@ install:
 	@echo installing awesome files to ${SHAREFIX}
 	@mkdir -p ${SHAREFIX}
 	@cp -fr src/awesome ${SHAREFIX}
+	@echo installing light/dark mode to ${BINFIX}
+	@cp -f src/bin/rui-darkmode ${BINFIX}
+	@cp -f src/bin/rui-lightmode ${BINFIX}
+	@echo installing wallpapers to ${SHAREFIX}
+	@cp -rf data/wallpapers ${SHAREFIX}
 
 remove:
 	@echo removing xsession file from ${XLOCATION}

@@ -31,7 +31,7 @@ if [ ! -e /tmp/mpv.fifo ]; then
 fi
 
 # Desktop effects
-run compton --config /usr/share/rui-desktop/compton.conf
+run compton --config ~/.config/compton.conf
 
 # Enable numlock on login
 run numlockx
@@ -44,6 +44,9 @@ run nm-applet
 
 # Bluetooth
 run blueman-applet
+
+run xfsettingsd --sm-client-disable &
+run xfce4-power-manager &
 
 # Keyboard layout
 # setxkbmap -layout "us,gr" -option "grp:alt_shift_toggle" &

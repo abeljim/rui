@@ -1,10 +1,11 @@
 #!/bin/bash
-
-
-sed -i -e 's/gtk-theme-name=Ocha/"gtk-theme-name=lovelace/' ~/.config/gtk-3.0/settings.ini
-rm ~/.Xresources
-cp ~/.xfiles/lovelace ~/.Xresources
-xrdb .Xresources
-killall -USR1 xst
-feh --bg-fill ~/Downloads/darkwall.png
+# sed -i -e 's/gtk-theme-name=Ocha/"gtk-theme-name=lovelace/' ~/.config/gtk-3.0/settings.ini
+# rm ~/.Xresources
+# cp ~/.xfiles/lovelace ~/.Xresources
+# xrdb ~/.Xresources
+dark_terminal
+xfconf-query -c xsettings -p /Net/ThemeName -s "lovelace"
+# killall -USR1 xst
+feh --bg-fill /usr/share/rui-desktop/wallpapers/dark_wall.png
+# betterlockscreen -u /usr/share/rui-desktop/wallpapers/dark_wall.png &
 echo 'awesome.restart()' | awesome-client

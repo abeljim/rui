@@ -13,11 +13,12 @@ local theme_collection = {
     "manta",        -- 1 --
     "lovelace",     -- 2 --
     "skyfall",      -- 3 --
-    "teatime"
+    "teatime",      -- 4 --
+    "gruvbox"       -- 5 ---
 }
 
 -- Change this number to use a different theme
-local theme_name = theme_collection[3]
+local theme_name = theme_collection[5]
 
 ----------------------------------------------
 
@@ -25,7 +26,7 @@ local bar_theme_collection = {
     "manta",        -- 1 -- Taglist, client counter, date, time, layout
     "lovelace",     -- 2 -- Start button, taglist, layout
     "skyfall",      -- 3 -- Weather, taglist, window buttons, pop-up tray
-    "teatime"
+    "teatime"       -- 4 --
 }
 
 -- Change this number to use a different bar theme
@@ -72,7 +73,7 @@ local keys = require("keys")
 local titlebars = require("titlebars")
 
 -- Extra features
-local bars = require("bar_themes."..bar_theme_name)
+local bars = require("bar_themes.".. bar_theme_name)
 local sidebar = require("noodle.sidebar")
 local exit_screen = require("noodle.text_exit_screen")
 -- local exit_screen = require("noodle.exit_screen")
@@ -109,9 +110,10 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-terminal = "xst"
+terminal = "exo-open --launch TerminalEmulator"
 -- Some terminals do not respect spawn callbacks
-floating_terminal = "xst -c fst" -- clients with class "fst" are set to be floating (check awful.rules below)
+floating_terminal = "xst -c fst" 
+-- clients with class "fst" are set to be floating (check awful.rules below)
 browser = "firefox"
 filemanager = "Thunar"
 tmux = terminal .. " -e tmux new "
@@ -457,6 +459,7 @@ awful.rules.rules = {
             "Chromium",
             "Thunderbird",
             "st-256color",
+            "Gnome-terminal",
             "Zathura",
         },
     }, properties = {},

@@ -15,27 +15,34 @@ altkey = "Mod1"
 ctrlkey = "Control"
 shiftkey = "Shift"
 
--- {{{ Mouse bindings on desktop
+-- Mouse bindings on desktop
 keys.desktopbuttons = gears.table.join(
+
+    -- Left Button
     awful.button({ }, 1, function ()
         mymainmenu:hide()
         sidebar.visible = false
         naughty.destroy_all_notifications()
 
         local function double_tap()
-          uc = awful.client.urgent.get()
-          -- If there is no urgent client, go back to last tag
-          if uc == nil then
-            awful.tag.history.restore()
-          else
-            awful.client.urgent.jumpto()
-          end
+            uc = awful.client.urgent.get()
+            -- If there is no urgent client, go back to last tag
+            if uc == nil then
+                awful.tag.history.restore()
+            else
+                awful.client.urgent.jumpto()
+            end
         end
+
         helpers.single_double_tap(function() end, double_tap)
     end),
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
 
-    -- Middle button - Toggle start scren
+    -- Right Button 
+    awful.button({ }, 3, function ()
+        mymainmenu:toggle()
+    end),
+
+    -- Middle button - Toggle start screen
     awful.button({ }, 2, function ()
         start_screen_show()
         -- sidebar.visible = not sidebar.visible
@@ -45,61 +52,57 @@ keys.desktopbuttons = gears.table.join(
     awful.button({ }, 4, awful.tag.viewprev),
     awful.button({ }, 5, awful.tag.viewnext),
 
-    -- Side buttons - Control volume
-    awful.button({ }, 9, function () awful.spawn.with_shell("volume-control.sh up") end),
-    awful.button({ }, 8, function () awful.spawn.with_shell("volume-control.sh down") end)
+    -- Side button Down - Control volume
+    awful.button({ }, 9, function ()
+        awful.spawn.with_shell("volume-control.sh up")
+    end),
 
-    -- Side buttons - Minimize and restore minimized client
-    -- awful.button({ }, 8, function()
-    --     if client.focus ~= nil then
-    --         client.focus.minimized = true
-    --     end
-    -- end),
-    -- awful.button({ }, 9, function()
-    --       local c = awful.client.restore()
-    --       -- Focus restored client
-    --       if c then
-    --           client.focus = c
-    --           c:raise()
-    --       end
-    -- end)
+    -- Side button Up - Control volume
+    awful.button({ }, 8, function ()
+        awful.spawn.with_shell("volume-control.sh down") 
+    end)
 )
--- }}}
 
--- {{{ Key bindings
+-- Key bindings
 keys.globalkeys = gears.table.join(
-    --awful.key({ superkey,           }, "s",      hotkeys_popup.show_help,
-              --{description="show help", group="awesome"}),
-    --awful.key({ superkey,           }, "comma",   awful.tag.viewprev,
-              --{description = "view previous", group = "tag"}),
-    --awful.key({ superkey,           }, "period",  awful.tag.viewnext,
-              --{description = "view next", group = "tag"}),
 
-    -- Focus client by direction
+
+    -- Focus client by Down
     awful.key({ superkey }, "Down",
         function()
             awful.client.focus.bydirection("down")
             if client.focus then client.focus:raise() end
         end,
-        {description = "focus down", group = "client"}),
+        {description = "focus down", group = "client"}
+    ),
+
+    -- Focus client by Up
     awful.key({ superkey }, "Up",
         function()
             awful.client.focus.bydirection("up")
             if client.focus then client.focus:raise() end
         end,
-        {description = "focus up", group = "client"}),
+        {description = "focus up", group = "client"}
+    ),
+
+    -- Focus client by Left
     awful.key({ superkey }, "Left",
         function()
             awful.client.focus.bydirection("left")
             if client.focus then client.focus:raise() end
         end,
-        {description = "focus left", group = "client"}),
+        {description = "focus left", group = "client"}
+    ),
+
+    -- Focus client by Right
     awful.key({ superkey }, "Right",
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
         end,
-        {description = "focus right", group = "client"}),
+        {description = "focus right", group = "client"}
+    ),
+
     -- Focus client by index (cycle through clients)
     awful.key({ superkey }, "j",
         function ()
@@ -113,31 +116,45 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    -- Focus client by index (cycle through clients)
+
+    -- Focus client by index (cycle foward)
     awful.key({ superkey }, "Tab",
       function ()
         awful.client.focus.byidx( 1)
       end,
       {description = "focus next by index", group = "client"}
     ),
+
+    -- Focus client by index (cycle backward)
     awful.key({ superkey, shiftkey }, "Tab",
       function ()
         awful.client.focus.byidx(-1)
       end,
       {description = "focus previous by index", group = "client"}
     ),
+
+    -- Increase Gaps Size
     awful.key({ superkey, shiftkey }, "minus",
         function ()
             awful.tag.incgap(5, nil)
         end,
-        {description = "increment gaps size for the current tag", group = "gaps"}
+        {
+            description = "increment gaps size for the current tag", 
+            group = "gaps"
+        }
     ),
+
+    -- Decrease Gaps Size
     awful.key({ superkey }, "minus",
         function ()
             awful.tag.incgap(-5, nil)
         end,
-        {description = "decrement gap size for the current tag", group = "gaps"}
+        {
+            description = "decrement gap size for the current tag",
+            group = "gaps"
+        }
     ),
+
     -- Kill all visible clients for the current tag
     awful.key({ superkey, altkey }, "q",
         function ()
@@ -146,21 +163,31 @@ keys.globalkeys = gears.table.join(
                c:kill()
             end
         end,
-        {description = "kill all visible clients for the current tag", group = "gaps"}
+        {
+            description = "kill all visible clients for the current tag",
+            group = "gaps"
+        }
     ),
-    -- Main menu
-    awful.key({ superkey, shiftkey  }, "v", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
 
-    -- Logout, Shutdown, Restart, Suspend, Lock
+    -- Main menu Hotkey
+    awful.key({ superkey, shiftkey  }, "v",
+        function ()
+            mymainmenu:show()
+        end,
+        {description = "show main menu", group = "awesome"}
+    ),
+
+    -- Logout, Shutdown, Restart, Suspend, Lock Menu
     awful.key({ superkey,           }, "Escape",
-      function ()
-        exit_screen_show()
-      end,
-      {description = "exit", group = "awesome"}),
+        function ()
+            exit_screen_show()
+        end,
+        {description = "exit", group = "awesome"}
+    ),
 
     -- Layout manipulation
-    awful.key({ superkey, shiftkey   }, "j", function ()
+    awful.key({ superkey, shiftkey   }, "j", 
+        function ()
         local current_layout = awful.layout.getname(awful.layout.get(awful.screen.focused()))
         local c = client.focus
         -- Floating: move client to edge
@@ -175,6 +202,7 @@ keys.globalkeys = gears.table.join(
     end,
     --{description = "swap with next client by index", group = "client"}),
     {description = "swap with direction down", group = "client"}),
+
     awful.key({ superkey, shiftkey   }, "Down", function ()
         local current_layout = awful.layout.getname(awful.layout.get(awful.screen.focused()))
         local c = client.focus
@@ -866,7 +894,7 @@ keys.clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
     end)
 )
--- }}}
+-- end of Keybindings
 
 -- Set keys
 root.keys(keys.globalkeys)

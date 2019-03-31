@@ -16,15 +16,25 @@ helpers.rrect = function(radius)
     end
 end
 
+-- Create rounded bar shape
 helpers.rbar = function()
   return function(cr, width, height)
     gears.shape.rounded_bar(cr, width, height)
   end
 end
 
+-- Create partial rounded rectangle
 helpers.prrect = function(radius, tl, tr, br, bl)
   return function(cr, width, height)
-    gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl, radius)
+    gears.shape.partially_rounded_rect(
+        cr,
+        width,
+        height,
+        tl,
+        tr,
+        br,
+        bl,
+        radius)
   end
 end
 
@@ -50,10 +60,12 @@ helpers.circle = function()
     end
 end
 
+-- Function to add color to Text
 function helpers.colorize_text(txt, fg)
     return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
 end
 
+-- Toggle Menu Function
 function helpers.client_menu_toggle()
     local instance = nil
 
@@ -67,6 +79,7 @@ function helpers.client_menu_toggle()
     end
 end
 
+-- Pad made of Size Text Box
 function helpers.pad(size)
     local str = ""
     for i = 1, size do
@@ -76,58 +89,99 @@ function helpers.pad(size)
     return pad
 end
 
+-- Move client to Edge in layout
 function helpers.move_to_edge(c, direction)
     local workarea = awful.screen.focused().workarea
     local client_geometry = c:geometry()
     if direction == "up" then
-        c:geometry({ nil, y = workarea.y + beautiful.screen_margin * 2, nil, nil })
-    elseif direction == "down" then 
-        c:geometry({ nil, y = workarea.height + workarea.y - client_geometry.height - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil })
-    elseif direction == "left" then 
-        c:geometry({ x = workarea.x + beautiful.screen_margin * 2, nil, nil, nil })
-    elseif direction == "right" then 
-        c:geometry({ x = workarea.width + workarea.x - client_geometry.width - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil, nil })
+        c:geometry({
+            nil,
+            y = workarea.y + beautiful.screen_margin * 2,
+            nil,
+            nil
+        })
+    elseif direction == "down" then
+        local y_pos = workarea.height + workarea.y
+        y_pos = y_pos - client_geometry.height
+        y_pos = y_pos - beautiful.screen_margin * 2
+        y_pos = y_pos - beautiful.border_width * 2
+        c:geometry({
+            nil,
+            y = y_pos,
+            nil,
+            nil
+        })
+    elseif direction == "left" then
+        c:geometry({
+            x = workarea.x + beautiful.screen_margin * 2,
+            nil,
+            nil,
+            nil
+        })
+    elseif direction == "right" then
+        local x_pos = workarea.width + workarea.x
+        x_pos = x_pos - client_geometry.width
+        x_pos = x_pos - beautiful.screen_margin * 2
+        x_pos = x_pos - beautiful.border_width * 2
+        c:geometry({
+            x = x_pos,
+            nil,
+            nil,
+            nil
+        })
     end
 end
 
-function helpers.create_titlebar(c, titlebar_buttons, titlebar_position, titlebar_size)
-    awful.titlebar(c, {font = beautiful.titlebar_font, position = titlebar_position, size = titlebar_size}) : setup {
-        { 
-            buttons = titlebar_buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { 
-            buttons = titlebar_buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
+-- Creates Tilebar for Client
+function helpers.create_titlebar(
+                        c,
+                        titlebar_buttons,
+                        titlebar_position,
+                        titlebar_size)
+    awful.titlebar(
+        c,
         {
-            buttons = titlebar_buttons,
-            layout = wibox.layout.fixed.horizontal
-        },
-        layout = wibox.layout.align.horizontal
-    }
+            font = beautiful.titlebar_font,
+            position = titlebar_position,
+            size = titlebar_size
+        }
+    ) : setup {
+            {
+                buttons = titlebar_buttons,
+                layout  = wibox.layout.fixed.horizontal
+            },
+            {
+                buttons = titlebar_buttons,
+                layout  = wibox.layout.fixed.horizontal
+            },
+            {
+                buttons = titlebar_buttons,
+                layout = wibox.layout.fixed.horizontal
+            },
+            layout = wibox.layout.align.horizontal
+        }
 end
 
-
+-- Detect A Double Tap
 local double_tap_timer = nil
 function helpers.single_double_tap(single_tap_function, double_tap_function)
-  if double_tap_timer then
-    double_tap_timer:stop()
-    double_tap_timer = nil
-    double_tap_function()
-    -- naughty.notify({text = "We got a double tap"})
-    return
-  end
-  
-  double_tap_timer =
-    gears.timer.start_new(0.20, function()
-                            double_tap_timer = nil
-                            -- naughty.notify({text = "We got a single tap"})
-                            single_tap_function()
-                            return false
+    if double_tap_timer then
+        double_tap_timer:stop()
+        double_tap_timer = nil
+        double_tap_function()
+        -- naughty.notify({text = "We got a double tap"})
+        return
+    end
+
+    double_tap_timer = gears.timer.start_new(0.20, function()
+        double_tap_timer = nil
+        -- naughty.notify({text = "We got a single tap"})
+        single_tap_function()
+        return false
     end)
 end
 
+-- Toggle scratchpad
 function helpers.toggle_scratchpad()
     local screen = awful.screen.focused()
 
@@ -166,7 +220,8 @@ function helpers.toggle_scratchpad()
     -- awful.client.run_or_raise( "scratchpad" , matcher)
 end
 
--- Add a clickable effect on a widget by changing the cursor on mouse::enter and mouse::leave
+-- Add a clickable effect on a widget by changing the cursor
+-- on mouse::enter and mouse::leave
 function helpers.add_clickable_effect(w)
     local original_cursor = "left_ptr"
     local hover_cursor = "hand1"

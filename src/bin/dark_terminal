@@ -1,0 +1,8 @@
+#!/bin/bash
+profile="$(dconf list /org/gnome/terminal/legacy/profiles:/ | sed 's./..')"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/palette "['rgb(40,42,54)', 'rgb(243,127,151)', 'rgb(90,222,205)', 'rgb(242,162,114)', 'rgb(136,151,244)', 'rgb(197,116,221)', 'rgb(121,230,243)', 'rgb(253,253,253)', 'rgb(190,190,193)', 'rgb(255,73,113)', 'rgb(24,227,200)', 'rgb(255,128,55)', 'rgb(85,111,255)', 'rgb(176,67,209)', 'rgb(63,220,238)', 'rgb(190,190,193)']"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/background-color "'rgb(29,31,40)'"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/use-transparent-background "true"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/background-transparency-percent "20"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/cursor-background-color "'rgb(197,116,221)'"
+dconf write /org/gnome/terminal/legacy/profiles:/$profile/foreground-color "'rgb(253,253,253)'"
