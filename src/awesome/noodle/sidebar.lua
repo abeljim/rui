@@ -14,16 +14,22 @@ local icon_size = dpi(36)
 local progress_bar_width = dpi(215)
 -- local progress_bar_margins = dpi(9)
 
+local icon_font = "Typicons 90"
 -- Item configuration
-local exit_icon = wibox.widget.imagebox(beautiful.poweroff_icon)
-exit_icon.resize = true
-exit_icon.forced_width = icon_size
-exit_icon.forced_height = icon_size
-local exit_text = wibox.widget.textbox("Exit")
+-- local exit_icon = wibox.widget.imagebox(beautiful.poweroff_icon)
+-- exit_icon.resize = true
+-- exit_icon.forced_width = icon_size
+-- exit_icon.forced_height = icon_size
+local exit_text_icon = ""
+local exit_icon = wibox.widget.textbox(exit_text_icon)
+exit_icon.font = "Typicons 30"
+exit_icon.markup = helpers.colorize_text(exit_icon.text, beautiful.xcolor1)
+local exit_text = wibox.widget.textbox(" Exit")
 exit_text.font = "sans 14"
 
 local exit = wibox.widget{
   exit_icon,
+  nil,
   exit_text,
   layout = wibox.layout.fixed.horizontal
 }
@@ -430,11 +436,13 @@ if beautiful.sidebar_hide_on_mouse_leave then
                            sidebar.visible = false
   end)
 end
+
+local s = mouse.screen
 -- Activate sidebar by moving the mouse at the edge of the screen
 if beautiful.sidebar_hide_on_mouse_leave then
-  local sidebar_activator = wibox({y = sidebar.y, width = 1, visible = true, ontop = false, opacity = 0, below = true})
-  sidebar_activator.height = sidebar.height
-  -- sidebar_activator.height = sidebar.height - beautiful.wibar_height
+  local sidebar_activator = wibox({x = s.geometry.width - 1, y = 0, height = beautiful.wibar_height, visible = true, ontop = false, opacity = 0, below = true})
+  -- sidebar_activator.height = sidebar.height
+  sidebar_activator.height = beautiful.wibar_height
   sidebar_activator:connect_signal("mouse::enter", function ()
                                      sidebar.visible = true
   end)

@@ -31,7 +31,7 @@ if [ ! -e /tmp/mpv.fifo ]; then
 fi
 
 # Desktop effects
-run compton --config ~/.config/compton.conf
+run compton --config /usr/share/rui-desktop/compton.conf
 
 # Enable numlock on login
 run numlockx
@@ -45,8 +45,17 @@ run nm-applet
 # Bluetooth
 run blueman-applet
 
-run xfsettingsd --sm-client-disable &
-run xfce4-power-manager &
+run xfsettingsd --sm-client-disable
+run xfce4-power-manager
+if [[ ! $(pgrep -f xfce4-volumed-pulse) ]]; then
+    run xfce4-volumed-pulse
+fi
+
+if [[ ! $(pgrep -f xfce-polkit) ]]; then
+    run /usr/libexec/xfce-polkit
+fi
+# run /usr/libexec/xfce-polkit
+# run xfce4-volumed-pulse
 
 # Keyboard layout
 # setxkbmap -layout "us,gr" -option "grp:alt_shift_toggle" &

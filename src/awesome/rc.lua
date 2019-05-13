@@ -36,11 +36,14 @@ local bar_theme_name = bar_theme_collection[3]
 
 -- Jit
 --pcall(function() jit.on() end)
-
+package.path = package.path .. ";/usr/share/rui-desktop/awesome/?.lua"
 -- Theme handling library
 local beautiful = require("beautiful")
+-- RUI Location
+local rui_loc = "/usr/share/rui-desktop/awesome/"
 -- Themes define colours, icons, font and wallpapers.
-local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/"
+--local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/"
+local theme_dir = "/usr/share/rui-desktop/awesome/themes/"
 beautiful.init( theme_dir .. theme_name .. "/theme.lua" )
 --beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
@@ -63,7 +66,7 @@ require("awful.hotkeys_popup.keys")
 -- They sleep until mpd/volume state changes, in an infinite loop.
 -- As a result when awesome restarts, they keep running in background, along with the new ones that are created after the restart.
 -- This script cleans up the old processes.
-awful.spawn.with_shell("~/.config/awesome/awesome-cleanup.sh")
+awful.spawn.with_shell(rui_loc .. "awesome-cleanup.sh")
 
 -- {{{ Initialize stuff
 
@@ -73,7 +76,8 @@ local keys = require("keys")
 local titlebars = require("titlebars")
 
 -- Extra features
-local bars = require("bar_themes.".. bar_theme_name)
+-- fix bar later
+local bars = require("bar")
 local sidebar = require("noodle.sidebar")
 local exit_screen = require("noodle.text_exit_screen")
 -- local exit_screen = require("noodle.exit_screen")
@@ -393,6 +397,7 @@ awful.rules.rules = {
             "Nm-connection-editor",
             "File-roller",
             "fst",
+            --"Steam",
         },
         name = {
             "Event Tester",  -- xev
@@ -622,97 +627,6 @@ awful.rules.rules = {
     end
     },
 
-    ---------------------------------------------
-    -- Start application on specific workspace --
-    ---------------------------------------------
-    -- Browsing
-    { rule_any = {
-        class = {
-            "Firefox",
-            "qutebrowser",
-        },
-        except_any = {
-            role = { "GtkFileChooserDialog" },
-            type = { "dialog" }
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[1] } },
-
-    -- Games
-    { rule_any = {
-        class = {
-            "dota2",
-            "Terraria.bin.x86",
-            "dontstarve_steam",
-            "Wine",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[2] } },
-
-    -- Chatting
-    { rule_any = {
-        class = {
-            --"Chromium",
-            "discord",
-            "TelegramDesktop",
-            "Signal",
-            "TeamSpeak 3",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[3], floating = false } },
-
-    -- Editing
-    -- { rule_any = {
-    --     class = {
-    --       "Emacs",
-    --       "Subl3",
-    --       },
-    --  }, properties = { screen = 1, tag = awful.screen.focused().tags[4] } },
-
-    -- Photo editing
-    { rule_any = {
-        class = {
-            "Gimp",
-            "Inkscape",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[6] } },
-
-    -- Mail
-    { rule_any = {
-        class = {
-            "Thunderbird",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[7] } },
-
-    -- Gaming clients
-    { rule_any = {
-        class = {
-            "Steam",
-            "battle.net.exe",
-            "Lutris",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[8] } },
-
-    -- Media
-    { rule_any = {
-        class = {
-            "mpvtube",
-            -- "mpv",
-        },
-    }, properties = { screen = 1, tag = awful.screen.focused().tags[9] },
-    callback = function (c)
-        -- awful.placement.centered(c,{honor_workarea=true})
-        gears.timer.delayed_call(function()
-            c.urgent = false
-        end)
-    end
-},
-
--- Miscellaneous
-{ rule_any = {
-    class = {
-        "Deluge",
-        "VirtualBox Manager",
-    },
-}, properties = { screen = 1, tag = awful.screen.focused().tags[10] } },
-
 }
 -- }}}
 
@@ -921,6 +835,6 @@ awesome.connect_signal(
 end)
 
 -- Startup applications
-awful.spawn.with_shell( os.getenv("HOME") .. "/.config/awesome/autostart.sh")
+awful.spawn.with_shell( rui_loc .. "autostart.sh")
 -- }}}
-beautiful.useless_gap = 20
+--beautiful.useless_gap = 20

@@ -4,7 +4,9 @@
 VERSION = 0.0.1
 
 BINFIX = /usr/bin
+# temp fix 
 SHAREFIX = /usr/share/rui-desktop
+# SHAREFIX = ~/.config/awesome
 XLOCATION = /usr/share/xsessions
 
 install:
@@ -20,9 +22,9 @@ install:
 	@echo installing awesome files to ${SHAREFIX}
 	@mkdir -p ${SHAREFIX}
 	@cp -fr src/awesome ${SHAREFIX}
-	@echo installing light/dark mode to ${BINFIX}
-	@cp -f src/bin/rui-darkmode ${BINFIX}
-	@cp -f src/bin/rui-lightmode ${BINFIX}
+	#@echo installing light/dark mode to ${BINFIX}
+	#@cp -f src/bin/rui-darkmode ${BINFIX}
+	#@cp -f src/bin/rui-lightmode ${BINFIX}
 	@echo installing wallpapers to ${SHAREFIX}
 	@cp -rf data/wallpapers ${SHAREFIX}
 

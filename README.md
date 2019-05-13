@@ -14,9 +14,18 @@ What things you need to install the software and how to install them
 
 ```
 Compton
+i3lock
+i3colorlock
 Betterlockscreen
 Awesome
 Xfsettingsd
+xfce4-power-manager
+xfce4-volumed-pulse
+xfce-polkit
+nm-applet
+blueman-applet
+Flameshot
+*Currently Not Complete*
 ```
 
 ### Installing

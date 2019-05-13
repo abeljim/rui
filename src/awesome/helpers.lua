@@ -241,4 +241,11 @@ function helpers.add_clickable_effect(w)
     end)
 end
 
+-- Find name of Current Layout
+function helpers.find_curr_layout()
+    local curr_screen = awful.screen.focused()
+    local curr_layout = awful.layout.get(curr_screen)
+    return awful.layout.getname(curr_layout)
+end
+
 return helpers

@@ -73,7 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
     s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
     --s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
-    s.traybox.y = 0
+    s.traybox.y = 5
     -- s.traybox.y = s.geometry.height - s.traybox.height - s.traybox.height / 2
     --s.traybox.bg = beautiful.bg_systray
     s.traybox.bg = beautiful.wibar_bg
@@ -193,7 +193,12 @@ end)
 local s = mouse.screen
 -- Show traybox when the mouse touches the rightmost edge of the wibar
 -- TODO fix for wibar_position = "top"
-traybox_activator = wibox({ x = s.geometry.width - 1, y = 0, height = beautiful.wibar_height, width = 1, opacity = 0, visible = true, bg = beautiful.wibar_bg })
+traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 5, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(120), opacity = 0, visible = true, bg = beautiful.wibar_bg })
+    -- s.traybox.width = dpi(120)
+    -- s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
+    -- s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
+    -- s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
+    -- s.traybox.y = 0
 traybox_activator:connect_signal("mouse::enter", function ()
     -- awful.screen.focused().traybox.visible = true
     s.traybox.visible = true
