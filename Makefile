@@ -22,6 +22,8 @@ install:
 	@echo installing awesome files to ${SHAREFIX}
 	@mkdir -p ${SHAREFIX}
 	@cp -fr src/awesome ${SHAREFIX}
+	@echo installing rofi files
+	@cp -fr src/rofi ${SHAREFIX}
 	#@echo installing light/dark mode to ${BINFIX}
 	#@cp -f src/bin/rui-darkmode ${BINFIX}
 	#@cp -f src/bin/rui-lightmode ${BINFIX}

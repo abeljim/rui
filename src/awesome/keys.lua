@@ -425,7 +425,7 @@ keys.globalkeys = gears.table.join(
     -- Run program (d for dmenu ;)
     awful.key({ superkey }, "d",
       function()
-        awful.spawn.with_shell("rofi -show combi")
+        awful.spawn.with_shell("rofi -config /usr/share/rui-desktop/rofi/config.rasi -show combi")
       end,
       {description = "rofi launcher", group = "launcher"}),
 
