@@ -18,7 +18,7 @@ local theme_collection = {
 }
 
 -- Change this number to use a different theme
-local theme_name = theme_collection[5]
+local theme_name = theme_collection[3]
 
 ----------------------------------------------
 
