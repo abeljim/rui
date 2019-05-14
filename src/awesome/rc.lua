@@ -121,7 +121,7 @@ floating_terminal = "xst -c fst"
 browser = "firefox"
 filemanager = "Thunar"
 tmux = terminal .. " -e tmux new "
-editor = "nvim"
+editor = "vim"
 --editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal.." -e "..editor.." "
 
@@ -328,12 +328,12 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add(tagnames[4], {
         layout = layouts[4],
-        master_width_factor = 0.6,
+        -- master_width_factor = 0.6,
         screen = s,
     })
     awful.tag.add(tagnames[5], {
         layout = layouts[5],
-        master_width_factor = 0.65,
+        -- master_width_factor = 0.65,
         screen = s,
     })
     awful.tag.add(tagnames[6], {
