@@ -59,10 +59,15 @@ exit:buttons(gears.table.join(
 --     expand = "none"
 -- }
 
-local temperature_icon = wibox.widget.imagebox(beautiful.temperature_icon)
-temperature_icon.resize = true
-temperature_icon.forced_width = icon_size
-temperature_icon.forced_height = icon_size
+-- local temperature_icon = wibox.widget.imagebox(beautiful.temperature_icon)
+-- temperature_icon.resize = true
+-- temperature_icon.forced_width = icon_size
+-- temperature_icon.forced_height = icon_size
+local temperature_text_icon = ""
+local temperature_icon = wibox.widget.textbox(temperature_text_icon)
+temperature_icon.font = "Typicons 25"
+temperature_icon.markup = helpers.colorize_text(temperature_icon.text, beautiful.xcolor1)
+
 local temperature_bar = require("noodle.temperature_bar")
 temperature_bar.forced_width = progress_bar_width
 -- temperature_bar.margins.top = progress_bar_margins
@@ -91,10 +96,15 @@ temperature:buttons(
     end)
 ))
 
-local battery_icon = wibox.widget.imagebox(beautiful.battery_icon)
-battery_icon.resize = true
-battery_icon.forced_width = icon_size
-battery_icon.forced_height = icon_size
+-- local battery_icon = wibox.widget.imagebox(beautiful.battery_icon)
+-- battery_icon.resize = true
+-- battery_icon.forced_width = icon_size
+-- battery_icon.forced_height = icon_size
+local battery_text_icon = ""
+local battery_icon = wibox.widget.textbox(battery_text_icon)
+battery_icon.font = "Typicons 25"
+battery_icon.markup = helpers.colorize_text(battery_icon.text, beautiful.xcolor5)
+
 awesome.connect_signal(
   "charger_plugged", function(c)
     battery_icon.image = beautiful.battery_charging_icon
@@ -121,10 +131,14 @@ local battery = wibox.widget{
   layout = wibox.layout.align.horizontal
 }
 
-local cpu_icon = wibox.widget.imagebox(beautiful.cpu_icon)
-cpu_icon.resize = true
-cpu_icon.forced_width = icon_size
-cpu_icon.forced_height = icon_size
+-- local cpu_icon = wibox.widget.imagebox(beautiful.cpu_icon)
+-- cpu_icon.resize = true
+-- cpu_icon.forced_width = icon_size
+-- cpu_icon.forced_height = icon_size
+local cpu_text_icon = ""
+local cpu_icon = wibox.widget.textbox(cpu_text_icon)
+cpu_icon.font = "Typicons 25"
+cpu_icon.markup = helpers.colorize_text(cpu_icon.text, beautiful.xcolor2)
 local cpu_bar = require("noodle.cpu_bar")
 cpu_bar.forced_width = progress_bar_width
 -- cpu_bar.margins.top = progress_bar_margins
@@ -159,10 +173,15 @@ cpu:buttons(
     end)
 ))
 
-local ram_icon = wibox.widget.imagebox(beautiful.ram_icon)
-ram_icon.resize = true
-ram_icon.forced_width = icon_size
-ram_icon.forced_height = icon_size
+-- local ram_icon = wibox.widget.imagebox(beautiful.ram_icon)
+-- ram_icon.resize = true
+-- ram_icon.forced_width = icon_size
+-- ram_icon.forced_height = icon_size
+local ram_text_icon = ""
+local ram_icon = wibox.widget.textbox(ram_text_icon)
+ram_icon.font = "Typicons 25"
+ram_icon.markup = helpers.colorize_text(ram_icon.text, beautiful.xcolor14)
+
 local ram_bar = require("noodle.ram_bar")
 ram_bar.forced_width = progress_bar_width
 -- ram_bar.margins.top = progress_bar_margins
@@ -308,10 +327,14 @@ mpd_song:buttons(gears.table.join(
 
 local disk_space = require("noodle.disk")
 disk_space.font = "sans 14"
-local disk_icon = wibox.widget.imagebox(beautiful.files_icon)
-disk_icon.resize = true
-disk_icon.forced_width = icon_size
-disk_icon.forced_height = icon_size
+-- local disk_icon = wibox.widget.imagebox(beautiful.files_icon)
+-- disk_icon.resize = true
+-- disk_icon.forced_width = icon_size
+-- disk_icon.forced_height = icon_size
+local disk_text_icon = ""
+local disk_icon = wibox.widget.textbox(disk_text_icon)
+disk_icon.font = "Typicons 25"
+disk_icon.markup = helpers.colorize_text(disk_icon.text, beautiful.xcolor3)
 local disk = wibox.widget{
   nil,
   {
@@ -356,10 +379,14 @@ search:buttons(gears.table.join(
                  end)
 ))
 
-local volume_icon = wibox.widget.imagebox(beautiful.volume_icon)
-volume_icon.resize = true
-volume_icon.forced_width = icon_size
-volume_icon.forced_height = icon_size
+-- local volume_icon = wibox.widget.imagebox(beautiful.volume_icon)
+-- volume_icon.resize = true
+-- volume_icon.forced_width = icon_size
+-- volume_icon.forced_height = icon_size
+local volume_text_icon = ""
+local volume_icon = wibox.widget.textbox(volume_text_icon)
+volume_icon.font = "Typicons 25"
+volume_icon.markup = helpers.colorize_text(volume_icon.text, beautiful.xcolor6)
 local volume_bar = require("noodle.volume_bar")
 volume_bar.forced_width = progress_bar_width
 -- volume_bar.shape = gears.shape.circle
