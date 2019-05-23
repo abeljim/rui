@@ -8,29 +8,32 @@ local dpi = xresources.apply_dpi
 local helpers = require("helpers")
 local pad = helpers.pad
 
--- {{{ Widgets
+-- Widgets
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
+    awful.button({ }, 1, function(t) t:view_only() end),
+    awful.button({ modkey }, 1, 
+        function(t)
+            if client.focus then
+                client.focus:move_to_tag(t)
+            end
+        end),
                     -- awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ }, 3, function(t)
-                        if client.focus then
-                          client.focus:move_to_tag(t)
-                        end
-                    end),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
-                )
+    awful.button({ }, 3, 
+        function(t)
+            if client.focus then
+                client.focus:move_to_tag(t)
+            end
+        end),
+    awful.button({ modkey }, 3, 
+        function(t)
+            if client.focus then
+                client.focus:toggle_tag(t)
+            end
+        end),
+    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
+)
 
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, 
@@ -69,11 +72,11 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a wibox that will only show the tray
     -- Hidden by default. Can be toggled with a keybind.
     s.traybox = wibox({visible = false, ontop = true, shape = helpers.rrect(beautiful.border_radius), type = "dock"})
-    s.traybox.width = dpi(120)
-    s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
+    s.traybox.width = dpi(100)
+    s.traybox.height = beautiful.wibar_height -- beautiful.screen_margin * 2
     s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
     --s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
-    s.traybox.y = 5
+    s.traybox.y = 0
     -- s.traybox.y = s.geometry.height - s.traybox.height - s.traybox.height / 2
     --s.traybox.bg = beautiful.bg_systray
     s.traybox.bg = beautiful.wibar_bg
@@ -193,7 +196,7 @@ end)
 local s = mouse.screen
 -- Show traybox when the mouse touches the rightmost edge of the wibar
 -- TODO fix for wibar_position = "top"
-traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 5, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(120), opacity = 0, visible = true, bg = beautiful.wibar_bg })
+traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 0, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(100), opacity = 0, visible = true, bg = beautiful.wibar_bg })
     -- s.traybox.width = dpi(120)
     -- s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
     -- s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
