@@ -113,11 +113,44 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-
+    
+    -- temporary fix later
     -- Focus client by index (cycle foward)
     awful.key({ superkey }, "Tab",
       function ()
-        awful.client.focus.byidx( 1)
+        -- awful.client.focus.byidx( 1)
+        local screen = awful.screen.focused()
+        local tag_index = awful.tag.selected(1).index
+        local next_tag = tag_index + 1
+        if(next_tag == 11) then 
+            next_tag = 1
+        end
+
+        while(true)
+        do
+            if(screen.tags[next_tag].activated == true) then
+                local tag_clients = screen.tags[next_tag]:clients()
+                if tag_clients and #tag_clients > 0 then
+                    -- naughty.notify({text="" .. next_tag})
+                    screen.tags[next_tag]:view_only()
+                    break
+                end
+            end
+
+            if(next_tag == tag_index) then
+                -- naughty.notify({text="break"})
+                break
+            end
+
+            if(next_tag < 8) then 
+                next_tag = next_tag + 1
+            else
+                next_tag = 1
+            end
+            -- naughty.notify({text="loop"})
+            -- naughty.notify({text="" .. screen.tags[next_tag].act})
+        end
+        -- awful.tag.viewnext(screen)
       end,
       {description = "focus next by index", group = "client"}
     ),

@@ -29,6 +29,8 @@ install:
 	#@cp -f src/bin/rui-lightmode ${BINFIX}
 	@echo installing wallpapers to ${SHAREFIX}
 	@cp -rf data/wallpapers ${SHAREFIX}
+	# @echo installing font 
+	# @cp data/typicons.ttf /usr/share/fonts/truetype/ 
 
 remove:
 	@echo removing xsession file from ${XLOCATION}
