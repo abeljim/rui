@@ -9,24 +9,7 @@ Rice without the Price
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Compton
-i3lock
-i3colorlock
-Betterlockscreen
-Awesome
-Xfsettingsd
-xfce4-power-manager
-xfce4-volumed-pulse
-xfce-polkit
-nm-applet
-blueman-applet
-Flameshot
-*Currently Not Complete*
-```
+[Dependencies](docs/Depend.md)
 
 ### Installing
 
