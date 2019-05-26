@@ -1,6 +1,6 @@
 #Dependencies
 
-'''
+```
 Rofi
 Compton
 Awesome
@@ -16,4 +16,4 @@ jq
 fortune-mod
 feh
 fontawesome-fonts
-'''
+```
