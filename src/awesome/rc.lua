@@ -212,59 +212,59 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = {
     { "awesome", myawesomemenu, beautiful.home_icon },
-    { "firefox", browser, beautiful.firefox_icon },
-    { "terminal", terminal, beautiful.terminal_icon },
-    { "files", filemanager, beautiful.files_icon },
-    { "search", "rofi -show combi", beautiful.search_icon },
-    { "discord",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'discord'})
-        end
-        awful.client.run_or_raise("discord", matcher)
-    end,
-    beautiful.discord_icon },
-    { "telegram",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'TelegramDesktop'})
-        end
-        awful.client.run_or_raise("telegram", matcher)
-    end,
-    beautiful.telegram_icon },
-    { "mail",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'Thunderbird'})
-        end
-        awful.client.run_or_raise("thunderbird", matcher)
-    end,
-    beautiful.mail_icon },
-    { "gimp",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'Gimp'})
-        end
-        awful.client.run_or_raise("gimp", matcher)
-    end,
-    beautiful.gimp_icon },
-    { "appearance", "lxappearance", beautiful.appearance_icon },
-    { "games",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'Lutris'})
-        end
-        awful.client.run_or_raise("lutris", matcher)
-    end,
-    beautiful.lutris_icon },
-    { "steam",
-    function ()
-        local matcher = function (c)
-            return awful.rules.match(c, {class = 'Steam'})
-        end
-        awful.client.run_or_raise("steam", matcher)
-    end,
-    beautiful.steam_icon },
+    -- { "firefox", browser, beautiful.firefox_icon },
+    -- { "terminal", terminal, beautiful.terminal_icon },
+    -- { "files", filemanager, beautiful.files_icon },
+    -- { "search", "rofi -show combi", beautiful.search_icon },
+    -- { "discord",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'discord'})
+    --    end
+    --    awful.client.run_or_raise("discord", matcher)
+    -- end,
+    -- beautiful.discord_icon },
+    -- { "telegram",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'TelegramDesktop'})
+    --    end
+    --    awful.client.run_or_raise("telegram", matcher)
+    -- end,
+    -- beautiful.telegram_icon },
+    -- { "mail",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'Thunderbird'})
+    --    end
+    --    awful.client.run_or_raise("thunderbird", matcher)
+    -- end,
+    -- beautiful.mail_icon },
+    -- { "gimp",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'Gimp'})
+    --    end
+    --    awful.client.run_or_raise("gimp", matcher)
+    -- end,
+    -- beautiful.gimp_icon },
+    -- { "appearance", "lxappearance", beautiful.appearance_icon },
+    -- { "games",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'Lutris'})
+    --    end
+    --    awful.client.run_or_raise("lutris", matcher)
+    -- end,
+    -- beautiful.lutris_icon },
+    -- { "steam",
+    -- function ()
+    --    local matcher = function (c)
+    --        return awful.rules.match(c, {class = 'Steam'})
+    --    end
+    --    awful.client.run_or_raise("steam", matcher)
+    -- end,
+    -- beautiful.steam_icon },
 }
 })
 
