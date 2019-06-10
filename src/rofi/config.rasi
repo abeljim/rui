@@ -23,12 +23,12 @@ configuration {
     color-active: "@xbg, @xfg, @xbg, @xfg, @xbg";
     color-window: "@xbg, @x1, @xfg";
     combi-hide-mode-prefix: false;
-    display-window: "";
-    display-windowcd: "";
-    display-drun: "";
-    display-ssh: "";
-    display-run: "";
-    display-combi: "";
+    display-window: "*";
+    display-windowcd: "#";
+    display-drun: ">";
+    display-ssh: "&";
+    display-run: "=";
+    display-combi: "=";
     kb-remove-word-back: "Control+BackSpace,Alt+d,Alt+BackSpace";
     kb-accept-entry: "Control+m,Return,KP_Enter,Alt+m";
     kb-mode-next: "Shift+Right,Control+Tab,Alt+l,Alt+Tab";
