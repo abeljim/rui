@@ -15,5 +15,5 @@ light
 jq
 fortune-mod
 feh
-fontawesome-fonts
+lm_sensors
 ```
