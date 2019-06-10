@@ -155,6 +155,12 @@ keys.globalkeys = gears.table.join(
       {description = "focus next by index", group = "client"}
     ),
 
+    awful.key({ altkey }, "Tab",
+      function ()
+        awful.client.focus.byidx( 1)
+      end,
+      {description = "focus next by client", group = "client"}
+    ),
     -- Focus client by index (cycle backward)
     awful.key({ superkey, shiftkey }, "Tab",
       function ()
@@ -504,15 +510,15 @@ keys.globalkeys = gears.table.join(
 
     -- Volume Control
     awful.key( { }, "XF86AudioMute", function()
-        awful.spawn.with_shell("volume-control.sh toggle")
+        -- awful.spawn.with_shell("volume-control.sh toggle")
     end,
               {description = "(un)mute volume", group = "volume"}),
     awful.key( { }, "XF86AudioLowerVolume", function()
-        awful.spawn.with_shell("volume-control.sh down")
+        -- awful.spawn.with_shell("volume-control.sh down")
     end,
               {description = "lower volume", group = "volume"}),
     awful.key( { }, "XF86AudioRaiseVolume", function()
-        awful.spawn.with_shell("volume-control.sh up")
+        -- awful.spawn.with_shell("volume-control.sh up")
     end,
               {description = "raise volume", group = "volume"}),
     -- Screenshots
