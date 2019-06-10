@@ -37,10 +37,10 @@ titlebars.buttons = gears.table.join(
     end),
     -- Right button - resize
     awful.button({ }, 3, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        c:raise()
-        awful.mouse.client.resize(c)
+        -- local c = mouse.object_under_pointer()
+        -- client.focus = c
+        -- c:raise()
+        -- awful.mouse.client.resize(c)
         -- awful.mouse.resize(c, nil, {jump_to_corner=true})
     end),
     awful.button({ }, 9, function()

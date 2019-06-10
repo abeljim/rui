@@ -509,18 +509,18 @@ keys.globalkeys = gears.table.join(
       {description = "increase brightness", group = "brightness"}),
 
     -- Volume Control
-    awful.key( { }, "XF86AudioMute", function()
+    -- awful.key( { }, "XF86AudioMute", function()
         -- awful.spawn.with_shell("volume-control.sh toggle")
-    end,
-              {description = "(un)mute volume", group = "volume"}),
-    awful.key( { }, "XF86AudioLowerVolume", function()
+    -- end,
+    --           {description = "(un)mute volume", group = "volume"}),
+    --- awful.key( { }, "XF86AudioLowerVolume", function()
         -- awful.spawn.with_shell("volume-control.sh down")
-    end,
-              {description = "lower volume", group = "volume"}),
-    awful.key( { }, "XF86AudioRaiseVolume", function()
+    -- end,
+    --          {description = "lower volume", group = "volume"}),
+    -- awful.key( { }, "XF86AudioRaiseVolume", function()
         -- awful.spawn.with_shell("volume-control.sh up")
-    end,
-              {description = "raise volume", group = "volume"}),
+    -- end,
+    --          {description = "raise volume", group = "volume"}),
     -- Screenshots
     awful.key( { }, "Print", function() awful.spawn.with_shell("flameshot gui -p ~/Pictures") end,
               {description = "take full screenshot", group = "screenshots"}),
