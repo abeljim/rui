@@ -192,7 +192,7 @@ client.connect_signal("request::titlebars", function(c)
                         --align  = beautiful.titlebar_title_align,
                         --widget = title_widget
                     --},
-                    title_widget,
+                    -- title_widget,
                     buttons = buttons,
                     layout  = wibox.layout.flex.horizontal
                 },
