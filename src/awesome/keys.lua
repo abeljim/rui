@@ -567,9 +567,21 @@ keys.globalkeys = gears.table.join(
         awful.layout.set(awful.layout.suit.max)
     end,
               {description = "set max layout", group = "tag"}),
-    -- Set tiled layout
+    -- Set tiled layout / temp now toggle layout
     awful.key({ superkey }, "s", function()
-        awful.layout.set(awful.layout.suit.tile)
+	local screen = awful.screen.focused()
+	local layout = awful.layout.get(screen)
+	local l_name = awful.layout.getname(layout)
+	if l_name == "tile" then
+        	awful.layout.set(awful.layout.suit.floating)
+		naughty.notify({text = "Float Mode"})
+	elseif l_name == "floating" then 
+       		awful.layout.set(awful.layout.suit.tile)
+		naughty.notify({text = "Tile Mode"})
+	else
+       		awful.layout.set(awful.layout.suit.tile)
+		naughty.notify({text = "Tile Mode"})	
+	end
     end,
               {description = "set tiled layout", group = "tag"}),
     -- Set floating layout

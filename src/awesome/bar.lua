@@ -67,7 +67,9 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Create a system tray widget
-    s.systray = wibox.widget.systray()
+    if s.index == 1 then
+    	s.systray = wibox.widget.systray()
+    end
 
     -- Create a wibox that will only show the tray
     -- Hidden by default. Can be toggled with a keybind.
