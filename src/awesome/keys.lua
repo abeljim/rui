@@ -574,12 +574,15 @@ keys.globalkeys = gears.table.join(
 	local l_name = awful.layout.getname(layout)
 	if l_name == "tile" then
         	awful.layout.set(awful.layout.suit.floating)
+		awful.mouse.snap.edge_enabled = true
 		naughty.notify({text = "Float Mode"})
 	elseif l_name == "floating" then 
        		awful.layout.set(awful.layout.suit.tile)
+		awful.mouse.snap.edge_enabled = false
 		naughty.notify({text = "Tile Mode"})
 	else
        		awful.layout.set(awful.layout.suit.tile)
+		awful.mouse.snap.edge_enabled = false
 		naughty.notify({text = "Tile Mode"})	
 	end
     end,
