@@ -78,13 +78,13 @@ awful.screen.connect_for_each_screen(function(s)
     s.traybox.height = beautiful.wibar_height -- beautiful.screen_margin * 2
     s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
     --s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
-    s.traybox.y = 0
+    s.traybox.y = 5
     -- s.traybox.y = s.geometry.height - s.traybox.height - s.traybox.height / 2
     --s.traybox.bg = beautiful.bg_systray
     s.traybox.bg = beautiful.wibar_bg
     s.traybox:setup {
       pad(1),
-      s.systray,
+      wibox.layout.margin(s.systray, 3, 3, 3, 3),
       pad(1),
       layout = wibox.layout.align.horizontal
     }
@@ -198,7 +198,7 @@ end)
 local s = mouse.screen
 -- Show traybox when the mouse touches the rightmost edge of the wibar
 -- TODO fix for wibar_position = "top"
-traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 0, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(100), opacity = 0, visible = true, bg = beautiful.wibar_bg })
+traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 5, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(100), opacity = 0, visible = true, bg = beautiful.wibar_bg })
     -- s.traybox.width = dpi(120)
     -- s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
     -- s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
