@@ -111,8 +111,8 @@ awful.screen.connect_for_each_screen(function(s)
     time.font = "sans 9"
 
     -- Create a custom text taglist
-    local text_taglist = require("noodle.text_taglist")
-
+    local taglist = require("noodle.text_taglist")
+    local text_taglist = taglist.text_taglist(s)
     -- Create text weather widget
     local text_weather = require("noodle.text_weather")
     local weather_widget_icon = text_weather:get_all_children()[1]
@@ -202,7 +202,8 @@ awful.screen.connect_for_each_screen(function(s)
     else
     s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.wibar_width, height = beautiful.wibar_height, shape = helpers.rrect(beautiful.wibar_border_radius)})
     -- Wibar items
-    local text_taglist = require("noodle.text_taglist")
+    local taglist = require("noodle.text_taglist")
+    local text_taglist = taglist.text_taglist(s)
     -- Add or remove widgets here
     s.mywibox:setup {
         {
