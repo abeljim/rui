@@ -67,11 +67,11 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Create a system tray widget
-    if s.index ~= 1 then
-	return 	
-    end
+    if s.index == 1 then
+		
 
     s.systray = wibox.widget.systray({bg = beautiful.bg_systray, opacity = 0})
+    s.systray.visible = false
     -- Create a wibox that will only show the tray
     -- Hidden by default. Can be toggled with a keybind.
     -- s.traybox = wibox({visible = false, ontop = true, shape = helpers.rrect(beautiful.border_radius), type = "dock"})
@@ -199,6 +199,30 @@ awful.screen.connect_for_each_screen(function(s)
         expand = "none",
         layout = wibox.layout.align.horizontal
     }
+    else
+    s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.wibar_width, height = beautiful.wibar_height, shape = helpers.rrect(beautiful.wibar_border_radius)})
+    -- Wibar items
+    local text_taglist = require("noodle.text_taglist")
+    -- Add or remove widgets here
+    s.mywibox:setup {
+        {
+            { -- Some padding
+                layout = wibox.layout.fixed.horizontal
+            },
+            spacing = dpi(12),
+            layout = wibox.layout.fixed.horizontal
+        },
+        text_taglist,
+		{
+			spacing = dpi(12),
+			layout = wibox.layout.fixed.horizontal
+		},
+        -- window_buttons,
+        expand = "none",
+        layout = wibox.layout.align.horizontal
+}
+	
+    end
 end)
 
 -- local s = screen.primary
