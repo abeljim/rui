@@ -198,11 +198,11 @@ lock:buttons(gears.table.join(
 ))
 
 -- Get screen geometry
-local screen_width = awful.screen.focused().geometry.width
-local screen_height = awful.screen.focused().geometry.height
+local screen_width = screen.primary.geometry.width
+local screen_height = screen.primary.geometry.height
 
 -- Create the widget
-exit_screen = wibox({x = 0, y = 0, visible = false, ontop = true, type = "dock", height = screen_height, width = screen_width})
+exit_screen = wibox({x = 0, y = 0, visible = false, ontop = true, type = "dock", height = screen_height, width = screen_width, screen = screen.primary})
 
 exit_screen.bg = beautiful.exit_screen_bg or beautiful.wibar_bg or "#111111"
 exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or "#FEFEFE"
