@@ -839,3 +839,4 @@ awful.spawn.with_shell( rui_loc .. "autostart.sh")
 -- }}}
 awful.mouse.snap.edge_enabled = false
 -- beautiful.useless_gap = 20
+

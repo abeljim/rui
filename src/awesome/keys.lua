@@ -534,7 +534,7 @@ keys.globalkeys = gears.table.join(
               {description = "edit most recent screenshot with gimp", group = "screenshots"}),
     -- Toggle tray visibility
     awful.key({ superkey }, "=", function ()
-        awful.screen.focused().traybox.visible = not awful.screen.focused().traybox.visible
+        screen.primary.systray.visible = not screen.primary.systray.visible
     end,
     {description = "toggle tray visibility", group = "awesome"}),
     -- Media keys
@@ -841,22 +841,26 @@ for i = 1, ntags do
         -- View tag only.
         awful.key({ superkey }, "#" .. i + 9,
                   function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        local current_tag = screen.selected_tag
+                        -- local screen = awful.screen.focused()
+                        -- local tag = screen.tags[i]
+                        -- local current_tag = screen.selected_tag
+			for s in screen do 
+				local tag = s.tags[i]
+				tag:view_only()
+			end
                         -- Tag back and forth:
                         -- If you try to focus the same tag you are at,
                         -- go back to the previous tag.
                         -- Useful for quick switching after for example
                         -- checking an incoming chat message at tag 2
                         -- and coming back to your work at tag 1
-                        if tag then
-                           if tag == current_tag then
-                               awful.tag.history.restore()
-                           else
-                               tag:view_only()
-                           end
-                        end
+                        -- if tag then
+                        --   if tag == current_tag then
+                        --       awful.tag.history.restore()
+                        --   else
+                        --       tag:view_only()
+                        --   end
+                        -- end
                         -- Simple tag view
                         --if tag then
                            --tag:view_only()

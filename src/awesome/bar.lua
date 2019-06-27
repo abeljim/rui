@@ -67,37 +67,38 @@ local tasklist_buttons = gears.table.join(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Create a system tray widget
-    if s.index == 1 then
-    	s.systray = wibox.widget.systray()
+    if s.index ~= 1 then
+	return 	
     end
 
+    s.systray = wibox.widget.systray({bg = beautiful.bg_systray, opacity = 0})
     -- Create a wibox that will only show the tray
     -- Hidden by default. Can be toggled with a keybind.
-    s.traybox = wibox({visible = false, ontop = true, shape = helpers.rrect(beautiful.border_radius), type = "dock"})
-    s.traybox.width = dpi(100)
-    s.traybox.height = beautiful.wibar_height -- beautiful.screen_margin * 2
-    s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
+    -- s.traybox = wibox({visible = false, ontop = true, shape = helpers.rrect(beautiful.border_radius), type = "dock"})
+    -- s.traybox.width = dpi(100)
+    -- s.traybox.height = beautiful.wibar_height -- beautiful.screen_margin * 2
+    -- s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
     --s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
-    s.traybox.y = 5
+    -- s.traybox.y = 5
     -- s.traybox.y = s.geometry.height - s.traybox.height - s.traybox.height / 2
     --s.traybox.bg = beautiful.bg_systray
-    s.traybox.bg = beautiful.wibar_bg
-    s.traybox:setup {
-      pad(1),
-      wibox.layout.margin(s.systray, 3, 3, 3, 3),
-      pad(1),
-      layout = wibox.layout.align.horizontal
-    }
-    s.traybox:buttons(gears.table.join(
+    -- s.traybox.bg = beautiful.wibar_bg
+    -- s.traybox:setup {
+    --  pad(1),
+    --  wibox.layout.margin(s.systray, 3, 3, 3, 3),
+    --  pad(1),
+    --  layout = wibox.layout.align.horizontal
+    -- }
+    -- s.traybox:buttons(gears.table.join(
                         -- Middle click - Hide traybox
-                        awful.button({ }, 2, function ()
-                            s.traybox.visible = false
-                        end)
-    ))
+    --                    awful.button({ }, 2, function ()
+    --                        s.traybox.visible = false
+    --                    end)
+    -- ))
     -- Hide traybox when mouse leaves
-    s.traybox:connect_signal("mouse::leave", function ()
-            s.traybox.visible = false
-    end)
+    -- s.traybox:connect_signal("mouse::leave", function ()
+    --        s.traybox.visible = false
+    -- end)
 
     -- Create a taglist widget
     -- s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
@@ -188,23 +189,28 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal
         },
         text_taglist,
-        time,
+		{
+			s.systray,
+			time,
+			spacing = dpi(12),
+			layout = wibox.layout.fixed.horizontal
+		},
         -- window_buttons,
         expand = "none",
         layout = wibox.layout.align.horizontal
     }
 end)
 
-local s = mouse.screen
+-- local s = screen.primary
 -- Show traybox when the mouse touches the rightmost edge of the wibar
 -- TODO fix for wibar_position = "top"
-traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 5, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(100), opacity = 0, visible = true, bg = beautiful.wibar_bg })
+-- traybox_activator = wibox({ x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width, y = 5, height = beautiful.wibar_height - beautiful.screen_margin * 4, width = dpi(100), opacity = 0, visible = true, bg = beautiful.wibar_bg })
     -- s.traybox.width = dpi(120)
     -- s.traybox.height = beautiful.wibar_height - beautiful.screen_margin * 4
     -- s.traybox.x = s.geometry.width - beautiful.screen_margin * 2 - s.traybox.width
     -- s.traybox.y = s.geometry.height - s.traybox.height - beautiful.screen_margin * 2
     -- s.traybox.y = 0
-traybox_activator:connect_signal("mouse::enter", function ()
+-- traybox_activator:connect_signal("mouse::enter", function ()
     -- awful.screen.focused().traybox.visible = true
-    s.traybox.visible = true
-end)
+--    s.traybox.visible = true
+-- end)
