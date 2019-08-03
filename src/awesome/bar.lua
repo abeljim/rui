@@ -4,7 +4,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-
+local naughty = require("naughty")
 local helpers = require("helpers")
 local pad = helpers.pad
 
@@ -64,14 +64,16 @@ local tasklist_buttons = gears.table.join(
                     end)
 )
 -- }}}
+local build_bar = function(s)
 
-awful.screen.connect_for_each_screen(function(s)
+    -- delete old bar 
+    if s.mywibox then s.mywibox:remove() end 
     -- Create a system tray widget
     if s.index == 1 then
 		
 
-    s.systray = wibox.widget.systray({bg = beautiful.bg_systray, opacity = 0})
-    s.systray.visible = false
+    -- s.systray = wibox.widget.systray({bg = beautiful.bg_systray, opacity = 0})
+    --s.systray.visible = false
     -- Create a wibox that will only show the tray
     -- Hidden by default. Can be toggled with a keybind.
     -- s.traybox = wibox({visible = false, ontop = true, shape = helpers.rrect(beautiful.border_radius), type = "dock"})
@@ -190,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         text_taglist,
 		{
-			s.systray,
+			wibox.widget.systray({bg = "FF000000"}) ,
 			time,
 			spacing = dpi(12),
 			layout = wibox.layout.fixed.horizontal
@@ -201,7 +203,8 @@ awful.screen.connect_for_each_screen(function(s)
     }
     else
     s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.wibar_width, height = beautiful.wibar_height, shape = helpers.rrect(beautiful.wibar_border_radius)})
-    -- Wibar items
+    -- s.mywibox.border_color = beautiful.get().xcolor0 .. "00"
+    -- Wibar itemms
     local taglist = require("noodle.text_taglist")
     local text_taglist = taglist.text_taglist(s)
     -- Add or remove widgets here
@@ -224,6 +227,16 @@ awful.screen.connect_for_each_screen(function(s)
 }
 	
     end
+
+end
+
+local rebuild_bar = function ()
+	for s in screen do 
+		build_bar(s)
+	end
+end
+awful.screen.connect_for_each_screen(function(s)
+	build_bar(s)
 end)
 
 -- local s = screen.primary
@@ -239,3 +252,10 @@ end)
     -- awful.screen.focused().traybox.visible = true
 --    s.traybox.visible = true
 -- end)
+local capi = {
+    screen = screen,
+    awesome = awesome
+}
+-- capi.screen.connect_signal("removed", awesome.restart())
+-- capi.screen.connect_signal("added", rebuild_bar)
+-- capi.screen.connect_signal("primary_changed", rebuild_bar)

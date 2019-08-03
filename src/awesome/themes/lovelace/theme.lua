@@ -83,7 +83,7 @@ theme.border_radius = dpi(6)
 
 -- Titlebars
 -- (Titlebar items can be customized in titlebars.lua)
-theme.titlebars_enabled = true
+theme.titlebars_enabled = false
 theme.titlebar_size = dpi(35)
 theme.titlebar_title_enabled = true
 theme.titlebar_font = "sans bold 9"

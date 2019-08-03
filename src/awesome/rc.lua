@@ -398,6 +398,8 @@ awful.rules.rules = {
             "File-roller",
             "fst",
             --"Steam",
+	    "lutris",
+	    "Wine"
         },
         name = {
             "Event Tester",  -- xev
@@ -676,22 +678,22 @@ end)
 --end)
 
 -- Rounded corners
-if beautiful.border_radius ~= 0 then
-    client.connect_signal("manage", function (c, startup)
-        if not c.fullscreen then
-            c.shape = helpers.rrect(beautiful.border_radius)
-        end
-    end)
+--if beautiful.border_radius ~= 0 then
+--    client.connect_signal("manage", function (c, startup)
+--        if not c.fullscreen then
+--            c.shape = helpers.rrect(beautiful.border_radius)
+--        end
+--    end)
 
     -- Fullscreen clients should not have rounded corners
-    client.connect_signal("property::fullscreen", function (c)
-        if c.fullscreen then
-            c.shape = helpers.rect()
-        else
-            c.shape = helpers.rrect(beautiful.border_radius)
-        end
-    end)
-end
+--    client.connect_signal("property::fullscreen", function (c)
+--        if c.fullscreen then
+--            c.shape = helpers.rect()
+--        else
+--            c.shape = helpers.rrect(beautiful.border_radius)
+--        end
+--    end)
+-- end
 
 -- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later
 -- Fixes wrong geometry when titlebars are enabled
@@ -838,5 +840,17 @@ end)
 awful.spawn.with_shell( rui_loc .. "autostart.sh")
 -- }}}
 awful.mouse.snap.edge_enabled = false
--- beautiful.useless_gap = 20
-
+beautiful.useless_gap = 20
+client.connect_signal("property::floating", function (c)
+    if c.floating then
+        awful.titlebar.show(c)
+    else
+        awful.titlebar.hide(c)
+    end
+end)
+awful.tag.attached_connect_signal(s, "property::layout", function (t)
+    local float = t.layout.name == "floating"
+    for _,c in pairs(t:clients()) do
+        c.floating = float
+    end
+end)
