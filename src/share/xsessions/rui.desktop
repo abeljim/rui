@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Rui
+Comment=Productivity focused desktop environment
+Exec=rui-session
+TryExec=awesome
+Type=Application
+DesktopNames=Rui;GNOME-Flashback;GNOME

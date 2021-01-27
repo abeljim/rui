@@ -192,7 +192,7 @@ local build_bar = function(s)
         },
         text_taglist,
 		{
-			wibox.widget.systray({bg = "FF000000"}) ,
+			wibox.layout.margin(wibox.widget.systray(), 7, 7, 7, 7),
 			time,
 			spacing = dpi(12),
 			layout = wibox.layout.fixed.horizontal

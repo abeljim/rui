@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=rui
+Comment=Productivity-focused desktop environment, Rui
+Exec=rui-session-init
+X-GNOME-WMName=Rui
+X-GNOME-Autostart-Phase=WindowManager
+X-GNOME-Provides=windowmanager
+X-GNOME-Autostart-Notify=false

@@ -13,9 +13,9 @@ install:
 	# @echo installing executable file to ${BINFIX}
 	# @mkdir -p ${BINFIX}
 	# @cp -fr src/rui-desktop ${BINFIX}
-	@echo installing xsession file to ${XLOCATION}
+	# @echo installing xsession file to ${XLOCATION}
 	@mkdir -p ${XLOCATION}
-	@cp -f src/rui.desktop ${XLOCATION}
+	# @cp -f src/rui.desktop ${XLOCATION} temp comment out if no work
 	@echo installing compton file to ${SHAREFIX}
 	@mkdir -p ${SHAREFIX}
 	@cp -f src/compton/compton.conf ${SHAREFIX}
@@ -31,6 +31,14 @@ install:
 	@cp -rf data/wallpapers ${SHAREFIX}
 	# @echo installing font 
 	# @cp data/typicons.ttf /usr/share/fonts/truetype/ 
+	
+	#gnome flashback
+	@cp -f src/bin/rui-session ${BINFIX}
+	@cp -f src/bin/rui-session-init ${BINFIX}
+	
+	@cp -f src/share/applications/rui.desktop /usr/share/applications
+	@cp -f src/share/gnome-session/sessions/rui.session /usr/share/gnome-session/sessions
+	@cp -f src/share/xsessions/rui.desktop /usr/share/xsessions
 
 remove:
 	@echo removing xsession file from ${XLOCATION}

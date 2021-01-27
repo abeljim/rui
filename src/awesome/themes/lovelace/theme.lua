@@ -60,7 +60,7 @@ theme.bg_normal     = theme.xcolor0
 theme.bg_focus      = theme.xcolor8
 theme.bg_urgent     = theme.xcolor8
 theme.bg_minimize   = theme.xcolor8
-theme.bg_systray    = theme.xbackground
+theme.bg_systray    = theme.xcolor0 --theme.xbackground
 
 theme.fg_normal     = theme.xcolor8
 theme.fg_focus      = theme.xcolor4
@@ -83,7 +83,7 @@ theme.border_radius = dpi(6)
 
 -- Titlebars
 -- (Titlebar items can be customized in titlebars.lua)
-theme.titlebars_enabled = false
+theme.titlebars_enabled = true --will remove in future
 theme.titlebar_size = dpi(35)
 theme.titlebar_title_enabled = true
 theme.titlebar_font = "sans bold 9"
@@ -155,7 +155,7 @@ theme.wibar_position = "top"
 theme.wibar_detached = false
 theme.wibar_height = dpi(35)
 theme.wibar_fg = theme.xcolor7
-theme.wibar_bg = theme.xcolor0 .. "00"
+theme.wibar_bg = theme.xcolor0  --.. "00"
 --theme.wibar_opacity = 0.7
 theme.wibar_border_color = theme.xcolor0
 theme.wibar_border_width = dpi(0)

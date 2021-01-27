@@ -1,0 +1,17 @@
+#!/bin/bash
+# This script initializes Rui Xresources and launches awesome.
+
+# Register with gnome-session so that it does not kill the whole session thinking it is dead.
+# See https://zork.net/~st/jottings/gnome-i3.html for details
+if [ -n "$DESKTOP_AUTOSTART_ID" ]; then
+    dbus-send --print-reply --session --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:Rui" "string:$DESKTOP_AUTOSTART_ID"
+fi
+
+# Launch awesomewm with the Rui configuration
+echo "Rui is launching awesome"
+awesome -c /usr/share/rui-desktop/awesome/rc.lua
+
+# Close session when awesome exits.
+if [ -n "$DESKTOP_AUTOSTART_ID" ]; then
+    dbus-send --print-reply --session --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.Logout "uint32:1"
+fi

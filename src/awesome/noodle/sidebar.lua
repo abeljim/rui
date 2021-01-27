@@ -467,7 +467,10 @@ end
 local s = mouse.screen
 -- Activate sidebar by moving the mouse at the edge of the screen
 if beautiful.sidebar_hide_on_mouse_leave then
+  -- top left
   local sidebar_activator = wibox({x = s.geometry.width - 1, y = 0, height = beautiful.wibar_height, visible = true, ontop = false, opacity = 0, below = true})
+  -- bottom left
+  -- local sidebar_activator = wibox({x = 0, y = s.geometry.height - beautiful.wibar_height, height = beautiful.wibar_height, visible = true, ontop = false, opacity = 0, below = true})
   -- sidebar_activator.height = sidebar.height
   sidebar_activator.height = beautiful.wibar_height
   sidebar_activator:connect_signal("mouse::enter", function ()

@@ -114,7 +114,7 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-terminal = "exo-open --launch TerminalEmulator"
+terminal = "/usr/bin/x-terminal-emulator"
 -- Some terminals do not respect spawn callbacks
 floating_terminal = "xst -c fst" 
 -- clients with class "fst" are set to be floating (check awful.rules below)
@@ -317,44 +317,54 @@ awful.screen.connect_for_each_screen(function(s)
         layout = layouts[1],
         screen = s,
         selected = true,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[2], {
         layout = layouts[2],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[3], {
         layout = layouts[3],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[4], {
         layout = layouts[4],
         -- master_width_factor = 0.6,
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[5], {
         layout = layouts[5],
         -- master_width_factor = 0.65,
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[6], {
         layout = layouts[6],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[7], {
         layout = layouts[7],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[8], {
         layout = layouts[8],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[9], {
         layout = layouts[9],
         screen = s,
+	gap_single_client = false,
     })
     awful.tag.add(tagnames[10], {
         layout = layouts[10],
         screen = s,
+	gap_single_client = false,
     })
 
     -- Create all tags at once (without seperate configuration for each tag)
@@ -376,11 +386,12 @@ awful.rules.rules = {
             size_hints_honor = false,
             honor_workarea = true,
             honor_padding = true,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen }
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen, 
+    	    titlebars_enabled = false}
         },
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" }
+    { rule_any = { type = { "dialog" }
         }, properties = { titlebars_enabled = true },
     },
 
@@ -471,9 +482,9 @@ awful.rules.rules = {
         },
     }, properties = {},
     callback = function (c)
-        if not beautiful.titlebars_imitate_borders then
-            awful.titlebar.hide(c)
-        end
+        --if not beautiful.titlebars_imitate_borders then
+        --    awful.titlebar.hide(c)
+        --end
     end
     },
 
@@ -507,12 +518,12 @@ awful.rules.rules = {
     -- Fixed terminal geometry
     { rule_any = {
         class = {
-            "Termite",
-            "mpvtube",
-            "kitty",
-            "st-256color",
-            "st",
-            "Gnome-terminal",
+            --"Termite",
+            --"mpvtube",
+            --"kitty",
+            --"st-256color",
+            --"st",
+            --"Gnome-terminal",
         },
     }, properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
         },
@@ -560,9 +571,9 @@ awful.rules.rules = {
     }, properties = { skip_taskbar = true, floating = true, ontop = true, sticky = true },
     callback = function (c)
         awful.placement.centered(c,{honor_workarea=true})
-        if not beautiful.titlebars_imitate_borders then
-            awful.titlebar.hide(c)
-        end
+        --if not beautiful.titlebars_imitate_borders then
+        --    awful.titlebar.hide(c)
+        --end
     end
     },
 
@@ -645,14 +656,15 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-
 end)
 
 
 -- Hide titlebars if required by the theme
 client.connect_signal("manage", function (c)
-    if not beautiful.titlebars_enabled then
-        awful.titlebar.hide(c)
+    if (c.first_tag.layout == awful.layout.suit.floating) then
+        awful.titlebar.show(c)
+    else
+       awful.titlebar.hide(c)
     end
 end)
 
@@ -840,14 +852,21 @@ end)
 awful.spawn.with_shell( rui_loc .. "autostart.sh")
 -- }}}
 awful.mouse.snap.edge_enabled = false
-beautiful.useless_gap = 20
+beautiful.useless_gap = 15
+beautiful.systray_icon_spacing = 10
+
 client.connect_signal("property::floating", function (c)
     if c.floating then
+        --naughty.notify({text = "float mode"})
         awful.titlebar.show(c)
     else
         awful.titlebar.hide(c)
+	if c.maximized then
+	   c.maximized = not c.maximized
+	end
     end
 end)
+
 awful.tag.attached_connect_signal(s, "property::layout", function (t)
     local float = t.layout.name == "floating"
     for _,c in pairs(t:clients()) do

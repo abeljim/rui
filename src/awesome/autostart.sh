@@ -14,7 +14,7 @@ function run {
 }
 
 # Music
-run mpd ~/.config/mpd/mpd.conf
+# run mpd ~/.config/mpd/mpd.conf
 
 # Emacs daemon
 #run emacs --daemon
@@ -45,15 +45,15 @@ run nm-applet
 # Bluetooth
 run blueman-applet
 
-run xfsettingsd --sm-client-disable
-run xfce4-power-manager
-if [[ ! $(pgrep -f xfce4-volumed-pulse) ]]; then
-    run xfce4-volumed-pulse
-fi
+#run xfsettingsd --sm-client-disable
+#run xfce4-power-manager
+#if [[ ! $(pgrep -f xfce4-volumed-pulse) ]]; then
+#    run xfce4-volumed-pulse
+#fi
 
-if [[ ! $(pgrep -f xfce-polkit) ]]; then
-    run /usr/libexec/xfce-polkit
-fi
+#if [[ ! $(pgrep -f xfce-polkit) ]]; then
+#    run /usr/libexec/xfce-polkit
+#fi
 # run /usr/libexec/xfce-polkit
 # run xfce4-volumed-pulse
 

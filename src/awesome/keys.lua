@@ -462,7 +462,7 @@ keys.globalkeys = gears.table.join(
     --awful.key({ superkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
               --{description = "run prompt", group = "launcher"}),
     -- Run program (d for dmenu ;)
-    awful.key({ superkey }, "d",
+    awful.key({ superkey }, "space",
       function()
         awful.spawn.with_shell("rofi -config /usr/share/rui-desktop/rofi/config.rasi -show combi")
       end,
@@ -542,8 +542,8 @@ keys.globalkeys = gears.table.join(
     {description = "next song", group = "media"}),
     awful.key({ superkey }, "comma", function() awful.spawn.with_shell("mpc prev") end,
     {description = "previous song", group = "media"}),
-    awful.key({ superkey }, "space", function() awful.spawn.with_shell("mpc toggle") end,
-    {description = "toggle pause/play", group = "media"}),
+    --awful.key({ superkey }, "space", function() awful.spawn.with_shell("mpc toggle") end,
+    --{description = "toggle pause/play", group = "media"}),
     awful.key({ superkey, shiftkey }, "period", function() awful.spawn.with_shell("mpvc next") end,
     {description = "mpv next song", group = "media"}),
     awful.key({ superkey, shiftkey }, "comma", function() awful.spawn.with_shell("mpvc prev") end,
